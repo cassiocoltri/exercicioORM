@@ -1,11 +1,16 @@
 package com.desafio02.exercicioModelOrm.entities;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +22,12 @@ public class Participante {
 	private Long id;
 	private String name;
 	private String email;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_participantes_atividades", 
+	joinColumns = @JoinColumn(name = "tb_atividade"),
+	inverseJoinColumns = @JoinColumn(name = "tb_participante"))
+	private Set<Atividade> atividades = new HashSet<>();
 	
 	public Participante() {
 	}
