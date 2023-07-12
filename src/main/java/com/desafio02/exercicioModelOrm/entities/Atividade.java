@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +26,10 @@ public class Atividade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	@Column(columnDefinition = "TEXT")
 	private String descricao;
+	
 	private Double preco;
 	
 	@ManyToOne
@@ -37,8 +41,8 @@ public class Atividade {
 	
 	@ManyToMany
 	@JoinTable(name = "tb_atividades_participantes", 
-	joinColumns = @JoinColumn(name = "tb_participante"),
-	inverseJoinColumns = @JoinColumn(name = "tb_atividade"))
+	joinColumns = @JoinColumn(name = "tb_atividade"),
+	inverseJoinColumns = @JoinColumn(name = "tb_participante"))
 	private Set<Participante> participantes = new HashSet<>();
 	
 	public Atividade() {
@@ -82,6 +86,10 @@ public class Atividade {
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+
+	public Set<Participante> getParticipantes() {
+		return participantes;
 	}
 
 	@Override

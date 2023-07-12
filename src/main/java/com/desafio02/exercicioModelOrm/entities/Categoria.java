@@ -47,6 +47,10 @@ public class Categoria {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public Set<Atividade> getAtividades() {
+		return atividades;
+	}
 
 	@Override
 	public int hashCode() {

@@ -4,12 +4,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -21,12 +20,11 @@ public class Participante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	@Column(unique = true)
 	private String email;
 	
-	@ManyToMany
-	@JoinTable(name = "tb_participantes_atividades", 
-	joinColumns = @JoinColumn(name = "tb_atividade"),
-	inverseJoinColumns = @JoinColumn(name = "tb_participante"))
+	@ManyToMany(mappedBy = "participantes")
 	private Set<Atividade> atividades = new HashSet<>();
 	
 	public Participante() {
@@ -61,6 +59,10 @@ public class Participante {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<Atividade> getAtividades() {
+		return atividades;
 	}
 
 	@Override
