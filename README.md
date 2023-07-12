@@ -11,3 +11,8 @@ conforme diagrama de objetos que segue.
 Instância dos dados para seeding:
 ![image](https://github.com/cassiocoltri/exercicioORM/assets/94485441/b3113506-ab46-4891-85b2-16eeb82aa236)
 
+Competências aplicadas:
+- Implementação de entidades de domínio
+- Mapeamento objeto-relacional com JPA
+- Setup de projeto Spring Boot para banco H2
+- Seeding de base de dados H2
